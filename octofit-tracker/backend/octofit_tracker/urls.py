@@ -33,7 +33,7 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'teams', TeamViewSet)
 router.register(r'activities', ActivityViewSet)
-router.register(r'leaderboard', LeaderboardViewSet)
+router.register(r'leaderboard', LeaderboardViewSet, basename='leaderboard')
 router.register(r'workouts', WorkoutViewSet)
 
 urlpatterns = [

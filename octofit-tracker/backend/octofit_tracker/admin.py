@@ -1,12 +1,12 @@
 from django.contrib import admin
-from octofit_tracker.models import User, Team, Activity, Leaderboard, Workout
+from octofit_tracker.models import User, Team, Activity, Workout
 
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'team_id')
+    list_display = ('name', 'email', 'team_id', 'fitness_level')
     search_fields = ('name', 'email')
-    list_filter = ('team_id',)
+    list_filter = ('team_id', 'fitness_level')
 
 
 @admin.register(Team)
@@ -17,16 +17,13 @@ class TeamAdmin(admin.ModelAdmin):
 
 @admin.register(Activity)
 class ActivityAdmin(admin.ModelAdmin):
-    list_display = ('user_email', 'activity_type', 'duration', 'calories', 'date')
-    search_fields = ('user_email', 'activity_type')
-    list_filter = ('activity_type', 'date')
+    list_display = ('user_email', 'workout_id', 'duration', 'points', 'date')
+    search_fields = ('user_email',)
+    list_filter = ('date',)
+    readonly_fields = ('points',)
 
 
-@admin.register(Leaderboard)
-class LeaderboardAdmin(admin.ModelAdmin):
-    list_display = ('rank', 'team_name', 'total_calories', 'total_activities')
-    ordering = ('rank',)
-    search_fields = ('team_name',)
+# Leaderboard is now calculated dynamically - no admin needed
 
 
 @admin.register(Workout)
