@@ -20,6 +20,14 @@ from octofit_tracker.views import (
     UserViewSet, TeamViewSet, ActivityViewSet,
     LeaderboardViewSet, WorkoutViewSet, api_root
 )
+import os
+
+# Configure base URL for Codespace or localhost
+codespace_name = os.environ.get('CODESPACE_NAME')
+if codespace_name:
+    base_url = f"https://{codespace_name}-8000.app.github.dev"
+else:
+    base_url = "http://localhost:8000"
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
